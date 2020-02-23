@@ -22,6 +22,16 @@ class JobHandler extends \Mobileia\Expressive\Request\MiaRequestHandler
         if(!array_key_exists($job->queue, \Mobileia\Expressive\Job\Config\Install::$QUEUES)){
             return new \Mobileia\Expressive\Diactoros\MiaJsonResponse(false);
         }
+        // Ejecutar
+        if(!self::execute($job)){
+            return new \Mobileia\Expressive\Diactoros\MiaJsonResponse(false);
+        }
+        // Devolvemos datos del usuario
+        return new \Mobileia\Expressive\Diactoros\MiaJsonResponse(true);
+    }
+    
+    public static function execute($job)
+    {
         // Obtenemos la clase a ejecutar
         $className = \Mobileia\Expressive\Job\Config\Install::$QUEUES[$job->queue];
         // Creamos el objeto
@@ -37,14 +47,14 @@ class JobHandler extends \Mobileia\Expressive\Request\MiaRequestHandler
             $job->executed_at = DB::raw('NOW()');
             $job->save();
             
-            return new \Mobileia\Expressive\Diactoros\MiaJsonResponse(false);
+            return false;
         }
         // Guardamos resultado
         $job->result = $result;
         $job->status = \Mobileia\Expressive\Job\Model\Job::STATUS_EXECUTED;
         $job->executed_at = DB::raw('NOW()');
         $job->save();
-        // Devolvemos datos del usuario
-        return new \Mobileia\Expressive\Diactoros\MiaJsonResponse(true);
+        
+        return true;
     }
 }
