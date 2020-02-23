@@ -54,3 +54,8 @@ $app->route('/mia-jobs/execute', [Mobileia\Expressive\Job\Handler\JobHandler::cl
 ```php
 \Mobileia\Expressive\Job\Execute\ExecuteJob::addByExecutor(new \App\Job\TestJob(), array('item' => '2'));
 ```
+7. Si no se va a utilizar Google Tasks, configurar Cron (config/routes.php):
+```php
+/** JOBS **/
+$app->route('/mia-jobs/cron', [Mobileia\Expressive\Job\Handler\CronHandler::class], ['GET', 'POST'], 'mia_jobs.cron');
+```
