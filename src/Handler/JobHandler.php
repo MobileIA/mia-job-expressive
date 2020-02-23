@@ -27,6 +27,7 @@ class JobHandler extends \Mobileia\Expressive\Request\MiaRequestHandler
         // Creamos el objeto
         /* @var $obj \Mobileia\Expressive\Job\Execute\ExecuteJob */
         $obj = new $className();
+        $obj->setJob($job);
         // Ejecutar job
         try {
             $result = $obj->start();
