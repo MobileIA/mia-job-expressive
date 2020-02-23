@@ -1,0 +1,15 @@
+
+CREATE TABLE IF NOT EXISTS `asociacionmutual`.`jobs` (
+  `id` BIGINT(20) NOT NULL AUTO_INCREMENT,
+  `queue` VARCHAR(100) NOT NULL,
+  `payload` LONGTEXT NULL DEFAULT NULL,
+  `result` LONGTEXT NULL DEFAULT NULL,
+  `attempts` INT(11) NULL DEFAULT 0,
+  `status` INT(2) NULL DEFAULT 0,
+  `reserved_at` DATETIME NULL DEFAULT NULL,
+  `executed_at` DATETIME NULL DEFAULT NULL,
+  `created_at` DATETIME NOT NULL,
+  `updated_at` DATETIME NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
