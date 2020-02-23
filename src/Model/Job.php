@@ -7,6 +7,9 @@
  */
 class Job extends \Illuminate\Database\Eloquent\Model
 {
+    const STATUS_PENDING = 0;
+    const STATUS_EXECUTED = 1;
+    
     protected $table = 'jobs';
     
     protected $casts = ['payload' => 'object', 'result' => 'object'];
