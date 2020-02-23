@@ -8,6 +8,8 @@
 class Job extends \Illuminate\Database\Eloquent\Model
 {
     protected $table = 'jobs';
+    
+    protected $casts = ['payload' => 'object', 'result' => 'object'];
     /**
      * Indicates if the model should be timestamped.
      *
