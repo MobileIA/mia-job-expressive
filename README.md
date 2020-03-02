@@ -59,3 +59,14 @@ $app->route('/mia-jobs/execute', [Mobileia\Expressive\Job\Handler\JobHandler::cl
 /** JOBS **/
 $app->route('/mia-jobs/cron', [Mobileia\Expressive\Job\Handler\CronHandler::class], ['GET', 'POST'], 'mia_jobs.cron');
 ```
+
+
+## Configuración Google Tasks
+1. Crear queue:
+```sh
+gcloud tasks queues create [QUEUE_ID]
+```
+2. Ver datos del queue:
+```sh
+gcloud tasks queues describe [QUEUE_ID]
+```
